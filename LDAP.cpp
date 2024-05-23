@@ -976,6 +976,13 @@ LdapProcessRequest (
 
                      dwSize = BufferWriteHex(pBuffer, (PBYTE)ppval[0]->bv_val, ppval[0]->bv_len);
                      pRequest->pdwStringMaxLength[j] = __max(pRequest->pdwStringMaxLength[j], dwSize);
+                  } else {
+                        ulResult = LdapGetLastError();
+                        Log(
+                           __FILE__, __FUNCTION__, __LINE__, LOG_LEVEL_ERROR,
+                           "[!] %sUnable to dump SD connection%s' (error %u: %s).",
+                           COLOR_RED, COLOR_RESET, ulResult, ldap_err2stringA(ulResult)
+                        );
                   }
                }
                break;
@@ -1012,6 +1019,13 @@ LdapProcessRequest (
                            COLOR_RED, COLOR_RESET
                         );
                      }
+                  } else {
+                        ulResult = LdapGetLastError();
+                        Log(
+                           __FILE__, __FUNCTION__, __LINE__, LOG_LEVEL_ERROR,
+                           "[!] %sUnable to dump SD connection%s' (error %u: %s).",
+                           COLOR_RED, COLOR_RESET, ulResult, ldap_err2stringA(ulResult)
+                        );
                   }
                }
                break;
@@ -1040,6 +1054,13 @@ LdapProcessRequest (
 
                         RpcStringFree((RPC_WSTR*)&szGuid);
                      }
+                  } else {
+                        ulResult = LdapGetLastError();
+                        Log(
+                           __FILE__, __FUNCTION__, __LINE__, LOG_LEVEL_ERROR,
+                           "[!] %sUnable to dump SD connection%s' (error %u: %s).",
+                           COLOR_RED, COLOR_RESET, ulResult, ldap_err2stringA(ulResult)
+                        );
                   }
                }
                break;
@@ -1164,6 +1185,13 @@ LdapProcessRequest (
                         }
                      }
                      pRequest->pdwStringMaxLength[j] = __max(pRequest->pdwStringMaxLength[j], dwTotalSize);
+                  } else {
+                        ulResult = LdapGetLastError();
+                        Log(
+                           __FILE__, __FUNCTION__, __LINE__, LOG_LEVEL_ERROR,
+                           "[!] %sUnable to dump BIN connection%s' (error %u: %s).",
+                           COLOR_RED, COLOR_RESET, ulResult, ldap_err2stringA(ulResult)
+                        );
                   }
                }
                break;
